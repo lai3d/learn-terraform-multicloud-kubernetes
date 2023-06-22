@@ -48,6 +48,9 @@ module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = local.cluster_name
   cluster_version = "1.27"
+
+  cluster_endpoint_public_access  = true
+
   # subnets         = module.vpc.private_subnets
   // https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest
   # subnet_ids      = ["subnet-abcde012", "subnet-bcde012a", "subnet-fghi345a"]
@@ -79,7 +82,7 @@ module "eks" {
       max_size     = 10
       desired_size = 3
 
-      instance_types = ["t2.small"]
+      instance_types = ["m5.large"]
     }
   }
 }
